@@ -1,0 +1,25 @@
+application: your-app-id
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+builtins:
+- remote_api: on
+
+handlers:
+# Endpoints handler
+- url: /_ah/spi/.*
+  script: helloworld_api.APPLICATION
+# webapp2 handler
+- url: /.*
+  script: main.app
+  secure: always
+
+libraries:
+- name: pycrypto
+  version: latest
+- name: endpoints
+  version: 1.0
+- name: webapp2
+  version: latest

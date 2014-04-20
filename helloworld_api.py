@@ -4,6 +4,8 @@ from protorpc import message_types
 from protorpc import remote
 
 
+from auth.endpoints import get_current_user
+
 package = 'Hello'
 
 
@@ -31,8 +33,11 @@ class HelloWorldApi(remote.Service):
                       path='hellogreeting', http_method='GET',
                       name='greetings.listGreeting')
     def greetings_list(self, *args):
-        user = endpoints.get_current_user()
+        user = get_current_user()
         if not user:
             raise endpoints.UnauthorizedException()
 
         return STORED_GREETINGS
+
+
+APPLICATION = endpoints.api_server([HelloWorldApi])

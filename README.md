@@ -56,7 +56,7 @@ This is intentionally a narrow use case, but should help inspire ideas on differ
 5. Store the credentials [somewhere appropriate](https://developer.apple.com/library/ios/documentation/security/conceptual/keychainServConcepts/02concepts/concepts.html) and send them with each endpoints service request
   ```obj-c
   GTLServiceHelloworld *service = [[GTLServiceHelloworld alloc] init];
-  NSString *authHeaderValue = [NSString stringWithFormat:@"%@: %@", responseObject[@"token_type"], responseObject[@"access_token"]];
+  NSString *authHeaderValue = [NSString stringWithFormat:@"%@ %@", responseObject[@"token_type"], responseObject[@"access_token"]];
 
   service.additionalHTTPHeaders = @{@"Authorization": authHeaderValue};
   ```
